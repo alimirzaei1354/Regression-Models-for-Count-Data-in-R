@@ -1,0 +1,22 @@
+library(ggplot2)
+library(dplyr)
+#Poisson Regression
+we see a distribution that gives highest probability to y = 0 and falls rapidly as acc_total(accsidents)
+increases.
+events <- df.esf.hour$acc_total
+# variance = lambda = mean(y)
+density <- dpois(x = events, lambda = 0.88)
+prob <- dpois(x = events, lambda = 0.88)
+df <- data.frame(events, density, prob)
+ggplot(df, aes(x = factor(events), y = density)) +
+  geom_col() +
+  geom_text(
+    aes(label = round(density,2), y = density + 1),
+    position = position_dodge(0.9),
+    size = 3,
+    vjust = 0
+  ) +
+  labs(title = "PMF and CDF of Poisson Distribution",
+       subtitle = "P(0.88).",
+       x = "Events (x)",
+       y = "Density") 
