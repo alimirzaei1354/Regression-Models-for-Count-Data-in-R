@@ -1,0 +1,7 @@
+#The Wald test (a.k.a. Wald Chi-Squared Test) is a parametric statistical measure to confirm whether a set of independent variables are collectively ‘significant’ for a model or not. It is also used for confirming whether each independent variable present in a model is significant or not.
+#If the Wald test shows that the parameters for certain explanatory variables are zero, we can remove the variables from the model.
+#If the test shows the parameters are not zero, we should include the variables in the model.
+modqp <- glm(acc_total ~ 1+TOTAL_VEHICLES+HEAVY_VEHICLES+class2_speed+offset(log(SPEED_VIOLATIONS)), df_selected,family=quasipoisson)
+library("lmtest")
+library("sandwich")
+coeftest(modqp, vcov = sandwich)
