@@ -1,0 +1,9 @@
+
+modP1 <- glm(acc_total ~ 1+TOTAL_VEHICLES+offset(log(SPEED_VIOLATIONS)), df_selected,family=poisson)
+modpq <- glm(acc_total ~ 1+TOTAL_VEHICLES+HEAVY_VEHICLES+class2_speed+offset(log(SPEED_VIOLATIONS)), df_selected,family=quasipoisson)
+waldtest(modP1,modp2)
+AIC(modP1,modpq)
+lrtest(modP1,modpq)
+
+fm <- list("ML-Pois" = modP1, "Quasi-Pois" = modpq)
+sapply(fm, function(x) coef(x)[1:2])
