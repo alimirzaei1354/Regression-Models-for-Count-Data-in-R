@@ -5,3 +5,9 @@ modqp <- glm(acc_total ~ 1+TOTAL_VEHICLES+HEAVY_VEHICLES+class2_speed+offset(log
 library("lmtest")
 library("sandwich")
 coeftest(modqp, vcov = sandwich)
+#be compared to the full model in a Wald test
+modP1 <- glm(acc_total ~ 1+TOTAL_VEHICLES+offset(log(SPEED_VIOLATIONS)), df_selected,family=poisson)
+modp2 <- glm(acc_total ~ 1+TOTAL_VEHICLES+HEAVY_VEHICLES+class2_speed+offset(log(SPEED_VIOLATIONS)), df_selected,family=poisson)
+waldtest(modP1,modp2)
+AIC(modP1,modp2)
+lrtest(modP1,modp2)
