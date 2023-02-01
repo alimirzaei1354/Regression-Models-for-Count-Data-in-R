@@ -1,0 +1,6 @@
+#Estimating Random Effects
+library(lme4)
+mmod1 <- lmer(acc_total ~ 1+(1|JMONTH), df)
+ranef(mmod)
+library(lattice)
+dotplot(ranef(mmod1, condVar=TRUE))
