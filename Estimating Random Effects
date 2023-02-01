@@ -5,3 +5,6 @@ ranef(mmod)
 library(lattice)
 dotplot(ranef(mmod1, condVar=TRUE))
 fixef(mmod1)+ranef(mmod1)$JMONTH
+qqnorm(residuals(mmod1),main="")
+plot(fitted(mmod1),residuals(mmod1),xlab="Fitted",ylab="Residuals")
+abline(h=0)
