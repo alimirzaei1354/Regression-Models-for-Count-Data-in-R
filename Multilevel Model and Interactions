@@ -1,0 +1,9 @@
+
+ggplot(data=df, aes(x=TOTAL_VEHICLES, y=acc_total, group=factor(JWEEKDAYNAME), colour="gray"), legend=FALSE) +
+  geom_smooth( formula = 'y ~ x',  method=lm, se=FALSE, fullrange=FALSE, lty=1, size=.5, color="gray40") +
+  geom_smooth(formula = 'y ~ x',aes(group=1), method=lm, se=FALSE, fullrange=FALSE, lty=1, size=2, color="blue") +
+  xlab("TOTAL_VEHICLES") + ylab("Predicted acc_total") +
+  theme_classic() +
+  theme(axis.title=element_text(size=18),
+        axis.text=element_text(size=14),
+        plot.title=element_text(size=18, hjust=.5)) 
