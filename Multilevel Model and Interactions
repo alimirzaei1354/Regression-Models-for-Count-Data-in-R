@@ -6,7 +6,7 @@ library(lme4)          # for multilevel models
 library(lmerTest)      # for p-values
 library(psych)         # for describing the data
 library(plyr)          # for data manipulation
-
+#Plots
 ggplot(data=df, aes(x=TOTAL_VEHICLES, y=acc_total, group=factor(JWEEKDAYNAME), colour="gray"), legend=FALSE) +
   geom_smooth( formula = 'y ~ x',  method=lm, se=FALSE, fullrange=FALSE, lty=1, size=.5, color="gray40") +
   geom_smooth(formula = 'y ~ x',aes(group=1), method=lm, se=FALSE, fullrange=FALSE, lty=1, size=2, color="blue") +
@@ -15,3 +15,8 @@ ggplot(data=df, aes(x=TOTAL_VEHICLES, y=acc_total, group=factor(JWEEKDAYNAME), c
   theme(axis.title=element_text(size=18),
         axis.text=element_text(size=14),
         plot.title=element_text(size=18, hjust=.5)) 
+        
+##    
+ggplot(df.esf.hour, aes(x=TAG, y=acc_total))+xlab("month Class")+ylab("accidents")+geom_boxplot()
+ggplot(df.esf.hour, aes(x=SPEED_VIOLATIONS, y=acc_total))+xlab("SPEED_VIOLATIONS Score")+ylab("ACCIDENTS")+geom_point(position = position_jitter(),alpha=0.3)                                                                                                           
+
