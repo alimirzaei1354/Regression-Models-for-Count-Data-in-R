@@ -16,7 +16,9 @@ ggplot(data=df, aes(x=TOTAL_VEHICLES, y=acc_total, group=factor(JWEEKDAYNAME), c
         axis.text=element_text(size=14),
         plot.title=element_text(size=18, hjust=.5)) 
         
-##    
-ggplot(df.esf.hour, aes(x=TAG, y=acc_total))+xlab("month Class")+ylab("accidents")+geom_boxplot()
-ggplot(df.esf.hour, aes(x=SPEED_VIOLATIONS, y=acc_total))+xlab("SPEED_VIOLATIONS Score")+ylab("ACCIDENTS")+geom_point(position = position_jitter(),alpha=0.3)                                                                                                           
-
+## plot   
+ggplot(df, aes(x=TAG, y=acc_total))+xlab("month Class")+ylab("accidents")+geom_boxplot()
+ggplot(df, aes(x=SPEED_VIOLATIONS, y=acc_total))+xlab("SPEED_VIOLATIONS Score")+ylab("ACCIDENTS")+geom_point(position = position_jitter(),alpha=0.3)                                                                                                           
+# ANOVA test 
+glin <- lm(acc_total ~ TOTAL_VEHICLES*TAG*JMONTH,df)
+anova(glin)
